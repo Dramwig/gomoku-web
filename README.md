@@ -1,10 +1,12 @@
 # Gomoku-web
 
-A web-based Gomoku game using Flask and Socket.IO.
-You can play the game at [gomoku.wangzixi.top](https://gomoku.wangzixi.top).
+<div style="display: inline-block; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.9);">
+  <img src="img/eq.png" alt="Image" align="right" width="300px" />
+</div>
 
-一个使用 Flask 和 Socket.IO 实现的基于 Web 的五子棋游戏。
-你可以在 [gomoku.wangzixi.top](https://gomoku.wangzixi.top) 上玩这个游戏。
+A web-based Gomoku game using Flask and Socket.IO. 一个使用 Flask 和 Socket.IO 实现的基于 Web 的五子棋游戏。
+
+You can play the game at [gomoku.wangzixi.top](https://gomoku.wangzixi.top). 你可以在 [gomoku.wangzixi.top](https://gomoku.wangzixi.top) 上玩这个游戏。
 
 ## Features
 
@@ -18,23 +20,11 @@ You can play the game at [gomoku.wangzixi.top](https://gomoku.wangzixi.top).
 
 Follow these steps to set up the project:
 
-1. Create a new conda environment:
-
-   ```
-   conda create --name web python=3.9
-   ```
-
-2. Activate the environment:
-
-   ```
-   conda activate web
-   ```
-
-3. Install the required dependencies:
-
-   ```
-   pip install flask flask-socketio eventlet
-   ```
+```bash
+conda create --name web python=3.9
+conda activate web
+pip install flask flask-socketio eventlet
+```
 
 ### Running the Server
 
