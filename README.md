@@ -1,7 +1,7 @@
 # Gomoku-web
 
 <div style="display: inline-block; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.9);">
-  <img src="img/eq.png" alt="Image" align="right" width="300px" />
+  <img src="img/eq2.png" alt="Image" align="right" width="200px" />
 </div>
 
 A web-based Gomoku game using Flask and Socket.IO. 一个使用 Flask 和 Socket.IO 实现的基于 Web 的五子棋游戏。
