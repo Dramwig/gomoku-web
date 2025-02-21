@@ -4,6 +4,7 @@ let board = [];
 let currentPlayer = 1; // 1: 黑棋, 2: 白棋
 let gameOver = false;
 
+const connectionStatusElement = document.getElementById('connection-status');
 const boardElement = document.getElementById('board');
 const statusElement = document.getElementById('status');
 const restartButton = document.getElementById('restart');
@@ -17,7 +18,6 @@ function initBoard() {
     boardElement.innerHTML = '';
     for (let i = 0; i < boardSize; i++) {
         for (let j = 0; j < boardSize; j++) {
-            console.log(i, j);
             const cell = document.createElement('div');
             cell.dataset.row = i;
             cell.dataset.col = j;
@@ -34,8 +34,11 @@ function handleCellClick(event) {
     const row = parseInt(event.target.dataset.row);
     const col = parseInt(event.target.dataset.col);
 
-    if (board[row][col] !== 0) return;
-    
+    if (board[row][col] !== 0) {
+        alert("该位置已有棋子，请选择其他位置！");
+        return;
+    }
+
     socket.emit('make_move', { x: col, y: row });
 }
 
@@ -61,14 +64,14 @@ function updateBoard(newBoard, turn) {
 }
 
 // 游戏结束处理
-function handleGameOver(winner) {
+function handleGameOver(winner, lineBegin, lineEnd) {
     gameOver = true;
     statusElement.textContent = `游戏结束，${winner === 1 ? '黑棋' : '白棋'}获胜！`;
 }
 
 // 重新开始游戏
 function restartGame() {
-    socket.emit('join_game');
+    socket.emit("restart_game");
 }
 
 // WebSocket事件监听
@@ -87,12 +90,16 @@ socket.on('update_board', (data) => {
 });
 
 socket.on('game_over', (data) => {
-    handleGameOver(data.winner);
+    handleGameOver(data.winner, data.line_begin, data.line_end);
 });
 
 socket.on('player_left', () => {
     statusElement.textContent = '对手已离开，游戏结束';
     gameOver = true;
+});
+
+socket.on("connection_status", (data) => {
+	connectionStatusElement.textContent = data;
 });
 
 // 绑定事件监听器
