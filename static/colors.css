@@ -1,0 +1,44 @@
+:root {
+    --background-color: #f0f0f0;
+    --text-color: #333;
+    --game-container-background-color: #fff;
+    --board-background-color: #d2b48c;
+    --board-border-color: #8b4513;
+    --cell-background-color: #f0d9b5;
+    --cell-border-color: #d2b48c;
+    --hover-background-color: #e0c9a5;
+    --black-piece-color: #000;
+    --white-piece-color: #fff;
+    --white-piece-border-color: #ccc;
+    --message-background-color: rgba(255, 0, 0, 0.8);
+    --message-text-color: white;
+    --button-background-color: #4CAF50;
+    --button-hover-background-color: #45a049;
+    --button-text-color: white;
+    --connection-status-color: #666;
+    --connected-color: green;
+    --disconnected-color: red;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #121212;
+        --text-color: #e0e0e0;
+        --game-container-background-color: #1e1e1e;
+        --board-background-color: #5d3419;
+        --board-border-color: #3f2b11;
+        --cell-background-color: #824b24;
+        --cell-border-color: #604626;
+        --hover-background-color: #ab7055;
+        --black-piece-color: #000;
+        --white-piece-color: #b0b0b0;
+        --white-piece-border-color: #5e5e5e;
+        --message-background-color: rgba(255, 0, 0, 0.8);
+        --message-text-color: white;
+        --button-background-color: #4CAF50;
+        --button-hover-background-color: #45a049;
+        --connection-status-color: #e0e0e0;
+        --connected-color: green;
+        --disconnected-color: red;
+    }
+}

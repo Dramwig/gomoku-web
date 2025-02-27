@@ -40,6 +40,7 @@ class Game:
             return "win"
 
         self.current_player = 3 - self.current_player
+        self.last_move = (x, y)
         return True
 
     def check_win(self, x, y):
@@ -136,7 +137,11 @@ def handle_make_move(data):
     if result:
         socketio.emit(
             "update_board",
-            {"board": game.board, "turn": game.current_player},
+            {
+                "board": game.board,
+                "turn": game.current_player,
+                "lastMove": {"row": data["y"], "col": data["x"]},
+            },
             room=game.players,
         )
     else:

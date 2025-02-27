@@ -1,6 +1,8 @@
+@import url('colors.css');
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: var(--background-color);
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,7 +14,7 @@ body {
 .game-container {
     display: flex;
     flex-direction: column;
-    background-color: #fff;
+    background-color: var(--game-container-background-color);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -20,7 +22,7 @@ body {
 }
 
 h1 {
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 10px;
 }
 
@@ -32,9 +34,9 @@ h1 {
     grid-template-columns: repeat(15, auto);
     grid-template-rows: repeat(15, auto);
     gap: 1px;
-    background-color: #d2b48c;
+    background-color: var(--board-background-color);
     padding: 10px;
-    border: 2px solid #8b4513;
+    border: 2px solid var(--board-border-color);
 }
 
 #board div {
@@ -44,26 +46,26 @@ h1 {
 }
 
 #board div:hover {
-    background-color: #e0c9a5;
+    background-color: var(--hover-background-color);
 }
 
 #connection-status {
     margin: 10px 0;
     font-weight: bold;
-    color: #666;
+    color: var(--connection-status-color);
 }
 
 .connected {
-    color: green;
+    color: var(--connected-color);
 }
 
 .disconnected {
-    color: red;
+    color: var(--disconnected-color);
 }
 
 #board div {
-    background-color: #f0d9b5;
-    border: 1px solid #d2b48c;
+    background-color: var(--cell-background-color);
+    border: 1px solid var(--cell-border-color);
     cursor: pointer;
     position: relative;
 }
@@ -81,26 +83,38 @@ h1 {
 }
 
 .black::before {
-    background-color: #000;
+    background-color: var(--black-piece-color);
 }
 
 .white::before {
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: var(--white-piece-color);
+    border: 1px solid var(--white-piece-border-color);
+}
+
+.last-move::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.5vh;
+    height: 0.5vh;
+    background-color: red;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #status {
     margin: 15px 0;
     font-size: 18px;
-    color: #333;
+    color: var(--text-color);
 }
 
 #restart {
     width: 50%;
     margin: 0 auto;
     padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -109,7 +123,7 @@ h1 {
 }
 
 #restart:hover {
-    background-color: #45a049;
+    background-color: var(--button-hover-background-color);
     transform: scale(0.95);
 }
 
@@ -141,8 +155,8 @@ h1 {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(255, 0, 0, 0.8);
-    color: white;
+    background-color: var(--message-background-color);
+    color: var(--message-text-color);
     padding: 10px 20px;
     border-radius: 5px;
     opacity: 0;

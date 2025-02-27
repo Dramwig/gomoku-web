@@ -3,6 +3,7 @@ const boardSize = 15;
 let board = [];
 let currentPlayer = 1; // 1: 黑棋, 2: 白棋
 let gameOver = false;
+let lastMove = null;
 
 const connectionStatusElement = document.getElementById('connection-status');
 const boardElement = document.getElementById('board');
@@ -52,7 +53,7 @@ function showMessage(message) {
 }
 
 // 更新棋盘状态
-function updateBoard(newBoard, turn) {
+function updateBoard(newBoard, turn, lastMovePosition) {
     board = newBoard;
     currentPlayer = turn;
     
@@ -67,7 +68,16 @@ function updateBoard(newBoard, turn) {
         } else if (value === 2) {
             cell.classList.add('white');
         }
+
+        if (lastMove && lastMove.row === row && lastMove.col === col) {
+            cell.classList.remove('last-move');
+        }
+        if (lastMovePosition && lastMovePosition.row === row && lastMovePosition.col === col) {
+            cell.classList.add('last-move');
+        }
     });
+
+    lastMove = lastMovePosition;
     
     statusElement.textContent = `当前玩家：${currentPlayer === 1 ? '黑棋' : '白棋'}`;
 }
@@ -95,7 +105,7 @@ socket.on('game_start', (data) => {
 });
 
 socket.on('update_board', (data) => {
-    updateBoard(data.board, data.turn);
+    updateBoard(data.board, data.turn, data.lastMove);
 });
 
 socket.on('game_over', (data) => {
