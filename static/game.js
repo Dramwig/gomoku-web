@@ -7,6 +7,7 @@ let gameOver = false;
 const connectionStatusElement = document.getElementById('connection-status');
 const boardElement = document.getElementById('board');
 const statusElement = document.getElementById('status');
+const messageElement = document.getElementById('message');
 const restartButton = document.getElementById('restart');
 
 // 初始化棋盘
@@ -30,16 +31,24 @@ function initBoard() {
 // 处理点击事件
 function handleCellClick(event) {
     if (gameOver) return;
-    
     const row = parseInt(event.target.dataset.row);
     const col = parseInt(event.target.dataset.col);
 
     if (board[row][col] !== 0) {
-        alert("该位置已有棋子，请选择其他位置！");
+        showMessage("该位置已有棋子，请选择其他位置！");
         return;
     }
 
     socket.emit('make_move', { x: col, y: row });
+}
+
+// 显示提示信息
+function showMessage(message) {
+    messageElement.textContent = message;
+    messageElement.classList.add('show');
+    setTimeout(() => {
+        messageElement.classList.remove('show');
+    }, 1000); // 1秒后隐藏提示信息
 }
 
 // 更新棋盘状态
@@ -100,6 +109,10 @@ socket.on('player_left', () => {
 
 socket.on("connection_status", (data) => {
 	connectionStatusElement.textContent = data;
+});
+
+socket.on("message", (data) => {
+    showMessage(data);
 });
 
 // 绑定事件监听器

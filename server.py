@@ -133,12 +133,15 @@ def handle_make_move(data):
         return
 
     result = game.make_move(data["x"], data["y"])
-    if result == "win":
+    if result:
         socketio.emit(
             "update_board",
             {"board": game.board, "turn": game.current_player},
             room=game.players,
         )
+    else:
+        socketio.emit("message", "该位置已有棋子，请选择其他位置！", room=request.sid)
+    if result == "win":
         socketio.emit(
             "game_over",
             {
@@ -146,12 +149,6 @@ def handle_make_move(data):
                 "line_begin": game.winbegin,
                 "line_end": game.winend,
             },
-            room=game.players,
-        )
-    elif result:
-        socketio.emit(
-            "update_board",
-            {"board": game.board, "turn": game.current_player},
             room=game.players,
         )
 
