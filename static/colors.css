@@ -1,6 +1,7 @@
 :root {
     --background-color: #f0f0f0;
     --text-color: #333;
+    --text-select-color: #0084ff;
     --game-container-background-color: #fff;
     --board-background-color: #d2b48c;
     --board-border-color: #8b4513;
@@ -16,8 +17,7 @@
     --button-hover-background-color: #45a049;
     --button-text-color: white;
     --connection-status-color: #666;
-    --connected-color: green;
-    --disconnected-color: red;
+    --footer-text-color: #666;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,12 +33,6 @@
         --black-piece-color: #000;
         --white-piece-color: #b0b0b0;
         --white-piece-border-color: #5e5e5e;
-        --message-background-color: rgba(255, 0, 0, 0.8);
-        --message-text-color: white;
-        --button-background-color: #4CAF50;
-        --button-hover-background-color: #45a049;
         --connection-status-color: #e0e0e0;
-        --connected-color: green;
-        --disconnected-color: red;
     }
 }
